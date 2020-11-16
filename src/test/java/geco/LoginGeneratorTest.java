@@ -14,6 +14,8 @@ public class LoginGeneratorTest {
         //WHEN on génère le login pour Paul Durand
         String login = lg.generateLoginForNomAndPrenom("Durand", "Paul");
         //THEN on vérifie que le login est bien PDUR
-        assertEquals(login, "PDUR");
+        assertEquals("PDUR", login);
+        login = lg.generateLoginForNomAndPrenom("Ralling", "Jean");
+        assertEquals("JRAL2", login);
     }
 }
