@@ -14,9 +14,9 @@ public class LoginGenerator {
      * Construit un login generator
      * @param loginService le service de login
      */
-<span class="nc" id="L17">    public LoginGenerator(LoginService loginService) {</span>
-<span class="nc" id="L18">        this.loginService = loginService;</span>
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L17">    public LoginGenerator(LoginService loginService) {</span>
+<span class="fc" id="L18">        this.loginService = loginService;</span>
+<span class="fc" id="L19">    }</span>
 
     /**
      * Genere un login unique a partir d'un nom et d'un prenom en prenant la premiere lettre du prenom, concatenee avec
@@ -34,14 +34,17 @@ public class LoginGenerator {
      * @return le login genere
      */
     public String generateLoginForNomAndPrenom(String nom, String prenom) {
-<span class="nc" id="L37">        String p = deAccent(prenom.substring(0,1).toUpperCase());</span>
-<span class="nc" id="L38">        String n = deAccent(nom.substring(0,3).toUpperCase());</span>
-<span class="nc" id="L39">        String login = p+n ;</span>
-<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (loginService.loginExists(login)) {</span>
-<span class="nc" id="L41">            login = login + &quot;1&quot; ;</span>
+<span class="fc" id="L37">        String p = deAccent(prenom.substring(0,1).toUpperCase());</span>
+<span class="fc" id="L38">        String n = deAccent(nom.substring(0,3).toUpperCase());</span>
+<span class="fc" id="L39">        String login = p+n ;</span>
+<span class="fc" id="L40">        int i = 1;</span>
+<span class="fc" id="L41">        String log = new String(login);</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        while (loginService.loginExists(login)) {</span>
+<span class="fc" id="L43">            login = log + i ;</span>
+<span class="fc" id="L44">            i++;</span>
         }
-<span class="nc" id="L43">        loginService.addLogin(login);</span>
-<span class="nc" id="L44">        return login;</span>
+<span class="fc" id="L46">        loginService.addLogin(login);</span>
+<span class="fc" id="L47">        return login;</span>
     }
 
     /**
@@ -51,9 +54,9 @@ public class LoginGenerator {
      * @return la chaine de caractere sans accents
      */
     private String deAccent(String str) {
-<span class="nc" id="L54">        String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);</span>
-<span class="nc" id="L55">        Pattern pattern = Pattern.compile(&quot;\\p{InCombiningDiacriticalMarks}+&quot;);</span>
-<span class="nc" id="L56">        return pattern.matcher(nfdNormalizedString).replaceAll(&quot;&quot;);</span>
+<span class="fc" id="L57">        String nfdNormalizedString = Normalizer.normalize(str, Normalizer.Form.NFD);</span>
+<span class="fc" id="L58">        Pattern pattern = Pattern.compile(&quot;\\p{InCombiningDiacriticalMarks}+&quot;);</span>
+<span class="fc" id="L59">        return pattern.matcher(nfdNormalizedString).replaceAll(&quot;&quot;);</span>
     }
 
 
