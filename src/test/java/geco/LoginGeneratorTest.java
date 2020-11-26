@@ -20,4 +20,13 @@ public class LoginGeneratorTest {
         login = lg.generateLoginForNomAndPrenom("Rolling", "Jean");
         assertEquals("JROL1", login);
     }
+
+    @Test
+    public void newTest() {
+        String[] s = {};
+        LoginService l = new LoginService(s);
+        LoginGenerator lg = new LoginGenerator(l);
+        String login = lg.generateLoginForNomAndPrenom("Du", "Paul");
+        assertEquals("PDU", login);
+    }
 }
